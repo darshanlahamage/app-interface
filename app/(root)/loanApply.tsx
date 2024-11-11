@@ -70,7 +70,7 @@ const LoanApply = () => {
         <Text className="text-xl font-JakartaSemiBold text-[#858585] mb-2">Applier - {name}</Text>
 
         <InputField
-          label="Interest Amount"
+          label="Loan Amount"
           placeholder="Enter Amount in Rupees"
           value={form.interestAmount}
           icon={images.cash}

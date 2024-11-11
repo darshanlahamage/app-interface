@@ -40,7 +40,7 @@ export default function Layout() {
           paddingBottom: 0, 
           overflow: "hidden",
           marginHorizontal: 18,
-          marginBottom: 15,
+          marginBottom: 10,
           height: 60,
           display: "flex",
           justifyContent: "space-between",

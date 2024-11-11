@@ -27,16 +27,14 @@ const Home = () => {
             </View>
 
             {/* Carousel Section */}
-           
             <View style={styles.tabsContainer}>
                 <ParallaxCarousel />
             </View>
-            <View>
-            <Text className='text-xl text-black font-JakartaSemiBold m-2'># Features  offered</Text>
-            </View>
+
+            <Text className='text-xl text-black font-JakartaSemiBold m-2'># Features offered</Text>
+
             {/* Action Boxes */}
             <View style={styles.boxContainer}>
-                {/* Loan Request Button */}
                 <TouchableOpacity style={styles.loanBox} onPress={() => router.push('/loanApply')}>
                     <View style={styles.boxHeader}>
                         <Ionicons name="cash-outline" size={24} color="#333" />
@@ -47,7 +45,6 @@ const Home = () => {
                 </TouchableOpacity>
 
                 <View style={styles.bottomBoxes}>
-                    {/* eKYC Button */}
                     <TouchableOpacity style={styles.box} onPress={() => router.push('/ekyc')}>
                         <View style={styles.boxHeader}>
                             <Ionicons name="person-outline" size={24} color="#333" />
@@ -57,7 +54,6 @@ const Home = () => {
                         <Text style={styles.boxSubtitle}>Get your KYC done</Text>
                     </TouchableOpacity>
 
-                    {/* Credit Score Button */}
                     <TouchableOpacity style={styles.box} onPress={() => router.push('/creditScore')}>
                         <View style={styles.boxHeader}>
                             <Ionicons name="trending-up-outline" size={24} color="#333" />
@@ -66,6 +62,26 @@ const Home = () => {
                         <Text style={styles.boxTitle}>Credit Score</Text>
                         <Text style={styles.boxSubtitle}>Check your credit score</Text>
                     </TouchableOpacity>
+                </View>
+            </View>
+
+            {/* Information and Tips Section */}
+            <View style={styles.contentSection}>
+
+                <View style={styles.infoBox}>
+                    <Ionicons name="bulb-outline" size={24} color="#0CC25F" />
+                    <View style={styles.infoTextContainer}>
+                        <Text style={styles.infoTitle}>Developed by Team Tech Titans  </Text>
+                        <Text className=' text-black font-JakartaMedium mb-1'>
+                            Darshan  Lahamage
+                        </Text>
+                        <Text className=' text-black font-JakartaMedium mb-1'>
+                            Yogendra  Pawar
+                        </Text>
+                        <Text className=' text-black font-JakartaMedium mb-1'>
+                            Sandeep  Pillai
+                        </Text>
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
@@ -143,7 +159,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     boxTitle: {
-        fontSize: 18,
+        fontSize: 17,
         fontWeight: 'bold',
         color: '#333', 
         marginBottom: 4,
@@ -156,4 +172,35 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#333',
     },
+    contentSection: {
+        marginTop: 20,
+        paddingHorizontal: 10,
+    },
+    infoBox: {
+        backgroundColor: '#F3F3F3',
+        borderRadius: 12,
+        padding: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 20,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 6,
+        elevation: 5,
+    },
+    infoTextContainer: {
+        marginLeft: 10,
+        flex: 1,
+    },
+    infoTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#333',
+        marginBottom: 5,
+    },
+    infoText: {
+        fontSize: 14,
+        color: '#333',
+    }
 });
