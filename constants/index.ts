@@ -39,6 +39,10 @@ import carousel2 from "@/assets/images/carousel2.png";
 import carousel3 from "@/assets/images/carousel3.png";
 import cash from "@/assets/images/cash.png";
 import calender from "@/assets/images/calender.png";
+import loginImage from "@/assets/images/loginImage.jpg";
+import phone from "@/assets/icons/phone.png";
+import celebration from "@/assets/images/celebration.jpg"
+
 
 export const images = {
   onboarding1,
@@ -55,7 +59,9 @@ export const images = {
   carousel2,
   carousel3,
   cash, 
-  calender
+  calender,
+  loginImage,
+  celebration
 };
 
 export const icons = {
@@ -85,6 +91,7 @@ export const icons = {
   star,
   target,
   to,
+  phone
 };
 
 export const onboarding = [

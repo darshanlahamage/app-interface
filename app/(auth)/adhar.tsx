@@ -6,12 +6,16 @@ import CustomButton from "@/components/CustomButton";
 import InputField from "@/components/InputField";
 import axios from "axios";
 import { icons, images } from "@/constants";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "@/store/userSlice";
 
 const AadhaarVerification = () => {
+  const dispatch = useDispatch();
   const [form, setForm] = useState({
     aadhaar: "",
     otp: "",
     role: "",
+    password:""
   });
   const [verification, setVerification] = useState({
     state: "default",
@@ -26,6 +30,7 @@ const AadhaarVerification = () => {
       });
 
       if (response.data) {
+       
         setVerification({ ...verification, state: "pending" });
         Alert.alert("OTP Sent", "Please check your registered mobile number for the OTP.");
       } else {
@@ -43,9 +48,20 @@ const AadhaarVerification = () => {
         aadhaar_number: form.aadhaar,
         otp: form.otp,
         role: form.role,
+        password:form.password
       });
-
+      console.log(response.data)
       if (response.data) {
+        const storeUserData ={
+          user_id: response.data.userdata.user_id, 
+          name: response.data.userdata.name, 
+          aadhaar_number: response.data.userdata.aadhaar_number, 
+          phone: response.data.userdata.phone, 
+          kyc_verified: response.data.userdata.kyc_verified, 
+          role: response.data.userdata.role, 
+          credit_score: response.data.userdata.credit_score
+      }
+       dispatch(setUserInfo(storeUserData));
         setVerification({ ...verification, state: "success" });
         setShowSuccessModal(true);
       } else {
@@ -56,6 +72,7 @@ const AadhaarVerification = () => {
         });
       }
     } catch (err) {
+      console.log(err.message);
       Alert.alert("Error", "Something went wrong. Please try again.");
     }
   };
@@ -77,7 +94,7 @@ const AadhaarVerification = () => {
             Aadhaar Verification
           </Text>
         </View>
-        <View className="p-5 flex-1 mt-10 justify-end">
+        <View className="p-5 flex-1 justify-end">
           {/* Show Aadhaar and Role fields only if OTP is not yet requested */}
           {verification.state === "default" && (
             <>
@@ -96,11 +113,26 @@ const AadhaarVerification = () => {
                 icon={icons.person}
                 onChangeText={(value) => setForm({ ...form, role: value })}
               />
+               <InputField
+                label="Create a password"
+                placeholder="Enter password"
+                icon={icons.lock}
+                value={form.password}
+                secureTextEntry
+                keyboardType="numeric"
+                onChangeText={(value) => setForm({ ...form, password: value })}
+              />
               <CustomButton
                 title="Request OTP"
                 onPress={onRequestOtpPress}
                 className="mt-6 bg-primary-500"
               />
+               <Text
+                onPress={() => router.push("/(auth)/login")}
+                className="text-center text-primary-500 mt-4"
+              >
+                Already registered? Log in
+              </Text>
             </>
           )}
 
@@ -112,16 +144,18 @@ const AadhaarVerification = () => {
                 placeholder="Enter OTP"
                 icon={icons.lock}
                 value={form.otp}
+                secureTextEntry
                 keyboardType="numeric"
                 onChangeText={(value) => setForm({ ...form, otp: value })}
               />
+             
               {verification.error && (
                 <Text className="text-red-500 text-sm mt-1">
                   {verification.error}
                 </Text>
               )}
               <CustomButton
-                title="Verify OTP"
+                title="Verify OTP & Register"
                 onPress={onVerifyOtpPress}
                 className="mt-5 bg-success-500"
               />
@@ -135,10 +169,10 @@ const AadhaarVerification = () => {
               className="w-[110px] h-[110px] mx-auto my-5"
             />
             <Text className="text-3xl font-JakartaBold text-center">
-              Verified
+             Aadhaar Verified
             </Text>
             <Text className="text-base text-gray-400 font-Jakarta text-center mt-2">
-              Your Aadhaar verification is successful.
+              Your are successfully registred.
             </Text>
             <CustomButton
               title="Continue"

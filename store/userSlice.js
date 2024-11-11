@@ -4,9 +4,10 @@ const initialState = {
     userid: '',
     name: '',
     aadhaar: '',
-    mobile: '',
+    phone: '',
     kyc_status: '',
     role: '',
+    credit_score:''
 };
 
 const userSlice = createSlice({
@@ -14,13 +15,14 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setUserInfo(state, action) {
-            const { userid, name, aadhaar, mobile, kyc_status, role } = action.payload;
-            state.userid = userid;
+            const { user_id, name, aadhaar_number, phone, kyc_verified, role, credit_score } = action.payload;
+            state.userid = user_id;
             state.name = name;
-            state.aadhaar = aadhaar;
-            state.mobile = mobile;
-            state.kyc_status = kyc_status;
+            state.aadhaar = aadhaar_number;
+            state.phone = phone;
+            state.kyc_status = kyc_verified;
             state.role = role;
+            state.credit_score= credit_score;
         },
         logout(state) {
             return { ...initialState }; 

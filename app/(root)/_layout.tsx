@@ -30,6 +30,14 @@ const Layout = ()=> {
             fontWeight: 'bold',
           },
           headerTintColor: "white", }} />
+        <Stack.Screen name="successLoan" options={{ headerShown: true,
+        headerStyle: {
+            backgroundColor: '#0CC25F',
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerTintColor: "white", }} />
       </Stack>
 
   );

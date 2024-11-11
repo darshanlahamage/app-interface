@@ -5,9 +5,12 @@ import ParallaxCarousel from "@/components/ParallaxCarousel";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useRouter } from 'expo-router'; 
 import { images } from '@/constants';
+import { useSelector } from 'react-redux'; 
+import { selectUser } from '@/store/userSlice';
 
 const Home = () => {
-    const router = useRouter(); // Initialize router
+    const router = useRouter(); 
+    const user = useSelector(selectUser);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -18,9 +21,8 @@ const Home = () => {
                     style={styles.farmerIcon}
                 />
                 <View style={styles.welcomeTextContainer}>
-                    <Text className='text-2xl text-white font-JakartaBold'>Welcome !!</Text>
-                    <Text className='text-xl text-white font-JakartaSemiBold mt-2'>Darshan Lahamage</Text>
-                    {/* <Text className='text-medium text-white font-JakartaMedium mt-2'>Empowering Farmers for a Sustainable Future</Text> */}
+                    <Text className='text-xl text-white font-JakartaSemiBold'>Welcome</Text>
+                    <Text className='text-xl text-white font-JakartaSemiBold mt-2'>{user.name} </Text>
                 </View>
             </View>
 
@@ -30,7 +32,7 @@ const Home = () => {
                 <ParallaxCarousel />
             </View>
             <View>
-            <Text className='text-xl text-black font-JakartaSemiBold m-2'>Features  offered</Text>
+            <Text className='text-xl text-black font-JakartaSemiBold m-2'># Features  offered</Text>
             </View>
             {/* Action Boxes */}
             <View style={styles.boxContainer}>
@@ -51,7 +53,7 @@ const Home = () => {
                             <Ionicons name="person-outline" size={24} color="#333" />
                             <Text style={styles.arrow}>➡️</Text>
                         </View>
-                        <Text style={styles.boxTitle}>eKYC</Text>
+                        <Text style={styles.boxTitle}>EKYC</Text>
                         <Text style={styles.boxSubtitle}>Get your KYC done</Text>
                     </TouchableOpacity>
 
@@ -79,38 +81,39 @@ const styles = StyleSheet.create({
     },
     welcomeContainer: {
         backgroundColor: '#0CC25F',
-        height: '15%',
-        borderBottomLeftRadius: 30,
-        borderBottomRightRadius: 30,
+        height: '12%',
+        borderBottomLeftRadius: 23,
+        borderBottomRightRadius: 23,
         paddingHorizontal: 20,
         paddingVertical: 30,
         justifyContent: 'space-between',
         position: 'relative',
+        margin: 1
     },
     farmerIcon: {
-        width: 80,
-        height: 80,
+        width: 60,
+        height: 60,
         position: 'absolute',
-        top: 22,
+        top: 20,
         right: 20,
         borderRadius: 50,
     },
     welcomeTextContainer: {
         position: 'absolute',
-        bottom: 25,
+        bottom: 13,
         left: 20,
     },
     tabsContainer: {
-        height: 140,
+        height: 150,
     },
     boxContainer: {
         paddingHorizontal: 10,
     },
     loanBox: {
         backgroundColor: '#E6F0FA', 
-        padding: 12,
+        padding: 10,
         borderRadius: 12,
-        marginBottom: 12,
+        marginBottom: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
@@ -124,9 +127,9 @@ const styles = StyleSheet.create({
     box: {
         flex: 1,
         backgroundColor: '#E6F0FA', 
-        padding: 14,
+        padding: 12,
         borderRadius: 12,
-        marginHorizontal: 5,
+        marginHorizontal: 4,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
@@ -137,17 +140,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 10,
+        marginBottom: 5,
     },
     boxTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#333', // Black text
+        color: '#333', 
         marginBottom: 4,
     },
     boxSubtitle: {
         fontSize: 14,
-        color: '#333', // Black text
+        color: '#333', 
     },
     arrow: {
         fontSize: 18,
